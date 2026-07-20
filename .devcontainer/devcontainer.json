@@ -1,0 +1,16 @@
+{
+  "name": "python-sample",
+  "image": "mcr.microsoft.com/devcontainers/python:3.14",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "lts" },
+    "ghcr.io/duduribeiro/devcontainer-features/neovim:1": { "version": "stable" }
+  },
+  "mounts": [
+    "source=${localEnv:LOCALAPPDATA}/nvim,target=/home/vscode/.config/nvim,type=bind",
+    "source=${devcontainerId}-nvim-data,target=/home/vscode/.local/share/nvim,type=volume",
+    "source=${devcontainerId}-nvim-state,target=/home/vscode/.local/state/nvim,type=volume",
+    "source=${devcontainerId}-nvim-cache,target=/home/vscode/.cache/nvim,type=volume"
+  ],
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "remoteUser": "vscode"
+}
