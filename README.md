@@ -4,7 +4,7 @@ Sample Python devcontainer project, set up for a LazyVim workflow.
 
 ## What's inside
 
-- `.devcontainer/` — `python:3.14-slim-trixie` image (Debian version pinned; runs as root, no sudo needed); Neovim (stable) is installed from the official tarball in `post-create.sh`, so the image stays lean with no devcontainer features
+- `.devcontainer/` — a `Dockerfile` built on `python:3.14-slim-trixie` (Debian version pinned; runs as root, no sudo needed) that bakes in git/curl/fd/ripgrep and Neovim (stable, from the official tarball); the project itself is editable-installed via a one-line `postCreateCommand`. No devcontainer features.
 - `src/sample_app/` — small CLI package (`sample-app <n>` prints FizzBuzz)
 - `tests/` — pytest suite
 - `pyproject.toml` — packaging, pytest, and the `ruff` + `ty` dev tools
@@ -32,7 +32,7 @@ devcontainer exec pytest
 devcontainer exec ruff check .
 ```
 
-The package is installed editable by `post-create.sh`, so source edits are picked up immediately.
+The package is installed editable by the `postCreateCommand`, so source edits are picked up immediately.
 
 ## VS Code
 

@@ -1,11 +1,11 @@
 {
   "name": "python-sample",
-  "image": "python:3.14-slim-trixie",
+  "build": { "dockerfile": "Dockerfile" },
   "mounts": [
     "source=${localEnv:LOCALAPPDATA}/nvim,target=/root/.config/nvim,type=bind",
     "source=${devcontainerId}-nvim-data,target=/root/.local/share/nvim,type=volume",
     "source=${devcontainerId}-nvim-state,target=/root/.local/state/nvim,type=volume",
     "source=${devcontainerId}-nvim-cache,target=/root/.cache/nvim,type=volume"
   ],
-  "postCreateCommand": "bash .devcontainer/post-create.sh"
+  "postCreateCommand": "pip install -e '.[dev]'"
 }
