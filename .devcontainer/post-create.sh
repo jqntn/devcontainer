@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-sudo apt-get update -qq
-sudo apt-get install -y -qq --no-install-recommends fd-find ripgrep
+apt-get update -qq
+apt-get install -y -qq --no-install-recommends git curl fd-find ripgrep
 
-sudo chown -R vscode:vscode /home/vscode/.local /home/vscode/.cache
+curl -fsSL https://github.com/neovim/neovim/releases/download/stable/nvim-linux-x86_64.tar.gz \
+  | tar -C /opt -xzf -
+ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
 
-pip install --user -e ".[dev]"
+pip install --no-cache-dir -e ".[dev]"
+
+apt-get clean
+rm -rf /var/lib/apt/lists/*

@@ -6,7 +6,7 @@ requires-python = ">=3.14"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest", "ruff"]
+dev = ["pytest", "ruff", "ty"]
 
 [project.scripts]
 sample-app = "sample_app.main:main"
